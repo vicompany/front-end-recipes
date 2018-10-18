@@ -1,0 +1,13 @@
+html {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+
+	color: $color-black;
+
+	font: #{$font-size-m}/1.5 $font-face-body;
+
+	background-color: $color-white;
+}

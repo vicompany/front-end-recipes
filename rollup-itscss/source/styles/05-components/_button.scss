@@ -1,0 +1,22 @@
+.button {
+	display: inline-block;
+
+	padding: $distance-s;
+
+	font-family: inherit;
+	font-size: inherit;
+
+	text-decoration: none;
+
+	border: solid;
+
+	&:active,
+	&:focus,
+	&:hover {
+		// define hover, focus and active state
+	}
+
+	&[disabled] {
+		// define disabled state
+	}
+}

@@ -1,0 +1,23 @@
+legend {
+	padding: 0;
+}
+
+input,
+select,
+textarea {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+textarea {
+	overflow: auto;
+}
+
+[type='radio'],
+[type='checkbox'] {
+	width: auto;
+
+	label + & {
+		margin-left: $distance-s;
+	}
+}
