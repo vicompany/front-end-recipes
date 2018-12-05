@@ -5,6 +5,7 @@ import { terser } from 'rollup-plugin-terser';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+const INPUT_DIR = 'source/scripts';
 const OUTPUT_DIR = 'dist/js';
 const DEFAULT_PLUGINS = [
 	resolve(),
@@ -14,7 +15,7 @@ const DEFAULT_PLUGINS = [
 
 export default [
 	{
-		input: 'source/scripts/main.mjs',
+		input: `${INPUT_DIR}/main.mjs`,
 
 		plugins: [
 			...DEFAULT_PLUGINS,
@@ -30,7 +31,7 @@ export default [
 		},
 	},
 	{
-		input: 'source/scripts/main.legacy.js',
+		input: `${INPUT_DIR}/main.legacy.js`,
 		plugins: [
 			...DEFAULT_PLUGINS,
 			babel({
