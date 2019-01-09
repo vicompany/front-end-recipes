@@ -37,7 +37,6 @@ export default [
 			babel({
 				babelrc: false,
 				exclude: 'node_modules/**',
-				runtimeHelpers: true,
 				presets: [
 					[
 						'@babel/preset-env',
@@ -46,9 +45,6 @@ export default [
 							useBuiltIns: 'usage',
 						},
 					],
-				],
-				plugins: [
-					'@babel/plugin-transform-runtime',
 				],
 			}),
 		],
