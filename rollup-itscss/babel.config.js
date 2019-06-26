@@ -7,6 +7,7 @@ module.exports = {
 				esmodules: true,
 			},
 			useBuiltIns: 'usage',
+			corejs: 3,
 		}],
 	],
 };

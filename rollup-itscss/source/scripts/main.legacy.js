@@ -1,5 +1,5 @@
 import 'dom4';
-import 'core-js/modules/es6.promise'; // Using only async functions won't enable this polyfill.
+import 'core-js/es/promise'; // Using only async functions won't enable this polyfill.
 
 import { msg } from './modules/module-a.mjs';
 
