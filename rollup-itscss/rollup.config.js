@@ -43,6 +43,7 @@ export default [
 						{
 							// Uses .browserslistrc for targets
 							useBuiltIns: 'usage',
+							corejs: 3,
 						},
 					],
 				],
