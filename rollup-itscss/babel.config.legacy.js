@@ -26,6 +26,7 @@ module.exports = {
 			preset,
 			{
 				...settings,
+				exclude: [],
 				targets: {
 					browsers,
 				},
