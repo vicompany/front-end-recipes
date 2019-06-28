@@ -4,7 +4,9 @@ module.exports = {
 			useBuiltIns: 'usage',
 			corejs: 3,
 			exclude: [
-				'es.promise', // Edge does not pass the Promise test: https://github.com/zloirock/core-js/issues/579#issuecomment-504325213
+				// Edge does not pass the Promise test and thus includes
+				// this polyfill: https://github.com/zloirock/core-js/issues/579#issuecomment-504325213
+				'es.promise',
 			],
 		}],
 	],
