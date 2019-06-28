@@ -26,11 +26,17 @@ module.exports = {
 			preset,
 			{
 				...settings,
-				exclude: [],
+				exclude: [
+					'@babel/plugin-transform-async-to-generator',
+					'@babel/plugin-transform-regenerator',
+				],
 				targets: {
 					browsers,
 				},
 			},
 		],
+	],
+	plugins: [
+		'babel-plugin-transform-async-to-promises',
 	],
 };
