@@ -1,3 +1,5 @@
+import path from 'path';
+
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
@@ -35,18 +37,8 @@ export default [
 		plugins: [
 			...DEFAULT_PLUGINS,
 			babel({
-				babelrc: false,
 				exclude: 'node_modules/**',
-				presets: [
-					[
-						'@babel/preset-env',
-						{
-							// Uses .browserslistrc for targets
-							useBuiltIns: 'usage',
-							corejs: 3,
-						},
-					],
-				],
+				configFile: path.resolve(__dirname, 'babel.config.legacy.js'),
 			}),
 		],
 
