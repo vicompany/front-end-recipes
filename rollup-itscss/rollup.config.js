@@ -22,6 +22,7 @@ export default [
 		plugins: [
 			...DEFAULT_PLUGINS,
 			babel({
+				// Uses the default `babel.config.js` file
 				exclude: 'node_modules/**',
 			}),
 		],

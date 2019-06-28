@@ -1,21 +1,34 @@
-// Export a 'modern/esmodules' config and
-// override this in the rollup.config.js for the legacy build.
+const browserslist = require('browserslist');
 
-// const config = require('./babel.config');
+const config = require('./babel.config');
 
-// delete config.targets;
+const LEGACY_BROWSERS = [
+	'ie 11',
+];
 
-// config.presets[0][0].debug = true;
+const {
+	presets: [
+		[
+			preset,
+			settings,
+		],
+	],
+} = config;
+
+const browsers = [
+	...browserslist(),
+	...LEGACY_BROWSERS,
+];
 
 module.exports = {
 	presets: [
 		[
-			'@babel/preset-env',
+			preset,
 			{
-				// Uses .browserslistrc for targets
-				useBuiltIns: 'usage',
-				corejs: 3,
-				debug: true,
+				...settings,
+				targets: {
+					browsers,
+				},
 			},
 		],
 	],
