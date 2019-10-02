@@ -7,7 +7,7 @@ import { terser } from 'rollup-plugin-terser';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const INPUT_DIR = 'source/scripts';
+const INPUT_DIR = 'src/scripts';
 const OUTPUT_DIR = 'dist/js';
 const DEFAULT_PLUGINS = [
 	resolve(),
