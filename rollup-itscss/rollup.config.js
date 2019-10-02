@@ -30,7 +30,7 @@ export default [
 		output: {
 			dir: OUTPUT_DIR,
 			format: 'es',
-			// entryFileNames: '[name]-[hash].mjs',
+			entryFileNames: '[name].mjs',
 			chunkFileNames: '[name]-[hash].mjs',
 			dynamicImportFunction: '__import__',
 			sourcemap: true,
@@ -52,7 +52,7 @@ export default [
 		output: {
 			dir: OUTPUT_DIR,
 			format: 'iife',
-			// entryFileNames: '[name]-[hash].js',
+			entryFileNames: '[name].js',
 			sourcemap: true,
 		},
 	},
