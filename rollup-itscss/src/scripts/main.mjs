@@ -1,5 +1,5 @@
 import { msg } from './modules/module-a.mjs';
 
-(async () => {
+export async function main() {
 	await msg('Hello from the future! 😎');
-})();
+}
