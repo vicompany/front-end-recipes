@@ -41,6 +41,8 @@ export default [
 			nomodule: `${INPUT_DIR}/main-nomodule.mjs`,
 		},
 
+		inlineDynamicImports: true,
+
 		plugins: [
 			...DEFAULT_PLUGINS,
 			babel({

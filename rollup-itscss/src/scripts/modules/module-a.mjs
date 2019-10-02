@@ -1,8 +1,8 @@
-const delay = (timeout = 500) => new Promise(r => setTimeout(r, timeout));
+import { delay } from './delay.mjs';
 
-const asyncMessage = async msg => `Async: ${msg}`;
+const asyncMessage = async text => `Async: ${text}`;
 
-export const msg = async (text, el = document.querySelector('main')) => {
+export async function msg(text, el = document.querySelector('main')) {
 	const p = document.createElement('p');
 
 	p.textContent = 'Loading...';
@@ -14,4 +14,4 @@ export const msg = async (text, el = document.querySelector('main')) => {
 	p.textContent = await asyncMessage(text);
 
 	return p;
-};
+}
