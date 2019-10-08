@@ -1,11 +1,11 @@
-import { delay } from './delay.mjs';
+import { asyncMessage } from './module-a.mjs';
 
-export async function doStuff(el) {
-	el.textContent = 'Loading...';
-	el.disabled = true;
+export async function dynamicMessage(button) {
+	button.textContent = 'Loading...';
+	button.disabled = true;
 
-	await delay(2000);
+	await asyncMessage(`Hi, I am dynamically loaded from browser: ${window.navigator.userAgent}.`);
 
-	el.textContent = 'Do it again';
-	el.disabled = false;
+	button.textContent = 'Do it again';
+	button.disabled = false;
 }

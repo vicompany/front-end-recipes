@@ -1,13 +1,14 @@
-import { msg } from './modules/module-a.mjs';
+import { asyncMessage } from './modules/module-a.mjs';
 
 export async function main() {
-	await msg('Hello from the future! 😎');
-
 	document
 		.querySelector('.js-button')
 		.addEventListener('click', async ({ target }) => {
-			const { doStuff } = await import('./modules/module-b.mjs');
+			const { dynamicMessage } = await import('./modules/module-b.mjs');
 
-			doStuff(target);
+			dynamicMessage(target);
 		});
+
+	// Await is not really needed here...
+	await asyncMessage('Hello from the future! 😎');
 }
