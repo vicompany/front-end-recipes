@@ -13,7 +13,7 @@
     "lint": "run-p lint:*",
     "lint:scripts": "eslint .",
     "lint:styles": "stylelint src/styles/**",
-    "serve": "browser-sync start --server --no-open --files 'index.html, dist'",
+    "serve": "npx browser-sync start --server --no-open --files 'index.html, dist'",
     "watch": "run-p watch:*",
     "watch:styles": "npm run build:styles -- --watch",
     "watch:scripts": "npm run build:scripts -- --watch"
@@ -22,7 +22,6 @@
     "@babel/core": "7.6.2",
     "@babel/preset-env": "7.6.2",
     "babel-plugin-transform-async-to-promises": "0.8.14",
-    "browser-sync": "2.26.7",
     "core-js": "3.2.1",
     "cross-env": "6.0.2",
     "dynamic-import-polyfill": "0.1.1",
