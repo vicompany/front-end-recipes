@@ -1,10 +1,4 @@
-const browserslist = require('browserslist');
-
 const config = require('./babel.config');
-
-const LEGACY_BROWSERS = [
-	'ie 11',
-];
 
 const {
 	presets: [
@@ -16,8 +10,7 @@ const {
 } = config;
 
 const browsers = [
-	...browserslist(),
-	...LEGACY_BROWSERS,
+	'ie 11',
 ];
 
 module.exports = {
