@@ -37,9 +37,7 @@ export default [
 		},
 	},
 	{
-		input: {
-			nomodule: `${INPUT_DIR}/main-nomodule.mjs`,
-		},
+		input: `${INPUT_DIR}/main-nomodule.mjs`,
 
 		inlineDynamicImports: true,
 
