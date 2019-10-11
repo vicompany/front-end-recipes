@@ -7,9 +7,9 @@ A recipe for bundling [ES Modules](https://developers.google.com/web/fundamental
 - Clone this repo or download the zip file.
 - In the root of the project run `npm ci` or `npm install`.
 - The main entry points are:
-    - [`source/scripts/main.mjs`](source/scripts/main.mjs): For modern browsers.
-    - [`source/scripts/main.legacy.js`](source/scripts/main.legacy.js): For older browsers that don't support ES Modules.
-    - [`source/styles/main.scss`](source/styles/main.scss): Includes our ITCSS setup.
+    - [`src/scripts/main-module.mjs`](src/scripts/main-module.mjs): For modern browsers.
+    - [`src/scripts/main-nomodule.js`](src/scripts/main-nomodule.mjs): For older browsers that don't support ES Modules.
+    - [`src/styles/main.scss`](src/styles/main.scss): Includes our ITCSS setup.
 
 ## Tasks
 

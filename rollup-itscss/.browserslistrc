@@ -1,12 +1,11 @@
 # desktop
+# We are not using the `esmodules` target due to: https://github.com/babel/babel/issues/8809
 last 2 Chrome versions
 last 2 Firefox versions
 last 2 Safari versions
 last 2 Edge versions
-last 2 Opera versions
 
 # mobile
 last 2 ChromeAndroid versions
 last 2 FirefoxAndroid versions
 last 2 iOS versions
-last 2 samsung versions

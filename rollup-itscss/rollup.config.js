@@ -17,7 +17,7 @@ const DEFAULT_PLUGINS = [
 
 export default [
 	{
-		input: `${INPUT_DIR}/main.mjs`,
+		input: `${INPUT_DIR}/main-module.mjs`,
 
 		plugins: [
 			...DEFAULT_PLUGINS,
@@ -28,13 +28,19 @@ export default [
 		],
 
 		output: {
-			file: `${OUTPUT_DIR}/main.mjs`,
+			dir: OUTPUT_DIR,
 			format: 'es',
+			entryFileNames: '[name].mjs',
+			chunkFileNames: '[name]-[hash].mjs',
+			dynamicImportFunction: '__import__',
 			sourcemap: true,
 		},
 	},
 	{
-		input: `${INPUT_DIR}/main.legacy.js`,
+		input: `${INPUT_DIR}/main-nomodule.mjs`,
+
+		inlineDynamicImports: true,
+
 		plugins: [
 			...DEFAULT_PLUGINS,
 			babel({
@@ -44,8 +50,9 @@ export default [
 		],
 
 		output: {
-			file: `${OUTPUT_DIR}/main.legacy.js`,
+			dir: OUTPUT_DIR,
 			format: 'iife',
+			entryFileNames: '[name].js',
 			sourcemap: true,
 		},
 	},
