@@ -1,3 +1,7 @@
+const LEGACY_BROWSERS = [
+	'ie 11',
+];
+
 module.exports = {
 	env: {
 		modern: {
@@ -11,7 +15,6 @@ module.exports = {
 						// Therefor we have to exclude it.
 						'es.promise',
 					],
-					debug: true,
 				}],
 			],
 		},
@@ -26,11 +29,8 @@ module.exports = {
 						'@babel/plugin-transform-regenerator',
 					],
 					targets: {
-						browsers: [
-							'ie 11',
-						],
+						browsers: LEGACY_BROWSERS,
 					},
-					debug: true,
 				}],
 			],
 			plugins: [
