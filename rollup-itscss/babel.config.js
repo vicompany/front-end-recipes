@@ -25,6 +25,7 @@ module.exports = {
 					useBuiltIns: 'usage',
 					corejs: 3,
 					exclude: [
+						// Don't convert async functions to generators.
 						'@babel/plugin-transform-async-to-generator',
 						'@babel/plugin-transform-regenerator',
 					],
