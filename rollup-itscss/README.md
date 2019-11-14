@@ -4,11 +4,11 @@ A recipe for bundling [ES Modules](https://developers.google.com/web/fundamental
 
 ## Usage
 
-- Clone this repo, download the zip file ur use [`degit`](https://www.npmjs.com/package/degit): `npx degit vicompany/front-end-recipes`.
+- Clone this repo, download the zip file or use [`degit`](https://www.npmjs.com/package/degit): `npx degit vicompany/front-end-recipes`.
 - In the root of the project run `npm ci` or `npm install`.
 - The main entry points are:
     - [`src/scripts/main-module.mjs`](src/scripts/main-module.mjs): For modern browsers.
-    - [`src/scripts/main-nomodule.js`](src/scripts/main-nomodule.mjs): For older browsers that don't support ES Modules.
+    - [`src/scripts/main-nomodule.mjs`](src/scripts/main-nomodule.mjs): For older browsers that don't support ES Modules.
     - [`src/styles/main.scss`](src/styles/main.scss): Includes our ITCSS setup.
 
 ## Tasks
