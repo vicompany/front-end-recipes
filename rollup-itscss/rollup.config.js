@@ -1,5 +1,3 @@
-import path from 'path';
-
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
@@ -22,7 +20,7 @@ export default [
 		plugins: [
 			...DEFAULT_PLUGINS,
 			babel({
-				// Uses the default `babel.config.js` file
+				envName: 'modern',
 				exclude: 'node_modules/**',
 			}),
 		],
@@ -44,8 +42,8 @@ export default [
 		plugins: [
 			...DEFAULT_PLUGINS,
 			babel({
+				envName: 'legacy',
 				exclude: 'node_modules/**',
-				configFile: path.resolve(__dirname, 'babel.config.legacy.js'),
 			}),
 		],
 
