@@ -7,18 +7,26 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const INPUT_DIR = 'src/scripts';
 const OUTPUT_DIR = 'dist/js';
-const DEFAULT_PLUGINS = [
-	resolve(),
-	commonjs(),
-	isProduction && terser(),
-];
+
+function basePlugins() {
+	const plugins = [
+		resolve(),
+		commonjs(),
+	];
+
+	if (isProduction) {
+		plugins.push(terser());
+	}
+
+	return plugins;
+}
 
 export default [
 	{
 		input: `${INPUT_DIR}/main-module.mjs`,
 
 		plugins: [
-			...DEFAULT_PLUGINS,
+			...basePlugins(),
 			babel({
 				envName: 'modern',
 				exclude: 'node_modules/**',
@@ -40,7 +48,7 @@ export default [
 		inlineDynamicImports: true,
 
 		plugins: [
-			...DEFAULT_PLUGINS,
+			...basePlugins(),
 			babel({
 				envName: 'legacy',
 				exclude: 'node_modules/**',
