@@ -27,7 +27,7 @@ export default [
 
 		output: {
 			dir: OUTPUT_DIR,
-			format: 'es',
+			format: 'esm',
 			entryFileNames: '[name].mjs',
 			chunkFileNames: '[name]-[hash].mjs',
 			dynamicImportFunction: '__import__',
