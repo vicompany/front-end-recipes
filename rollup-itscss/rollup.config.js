@@ -25,14 +25,6 @@ export default [
 	{
 		input: `${INPUT_DIR}/main-module.mjs`,
 
-		plugins: [
-			...basePlugins(),
-			babel({
-				envName: 'modern',
-				exclude: 'node_modules/**',
-			}),
-		],
-
 		output: {
 			dir: OUTPUT_DIR,
 			format: 'esm',
@@ -41,11 +33,24 @@ export default [
 			dynamicImportFunction: '__import__',
 			sourcemap: true,
 		},
+
+		plugins: [
+			...basePlugins(),
+			babel({
+				envName: 'modern',
+				exclude: 'node_modules/**',
+			}),
+		],
 	},
 	{
 		input: `${INPUT_DIR}/main-nomodule.mjs`,
 
-		inlineDynamicImports: true,
+		output: {
+			dir: OUTPUT_DIR,
+			format: 'iife',
+			entryFileNames: '[name].js',
+			sourcemap: true,
+		},
 
 		plugins: [
 			...basePlugins(),
@@ -55,11 +60,6 @@ export default [
 			}),
 		],
 
-		output: {
-			dir: OUTPUT_DIR,
-			format: 'iife',
-			entryFileNames: '[name].js',
-			sourcemap: true,
-		},
+		inlineDynamicImports: true,
 	},
 ];
