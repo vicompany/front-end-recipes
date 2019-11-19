@@ -8,14 +8,16 @@ const isProduction = process.env.NODE_ENV === 'production';
 const INPUT_DIR = 'src/scripts';
 const OUTPUT_DIR = 'dist/js';
 
-function basePlugins() {
+function basePlugins(legacy = false) {
 	const plugins = [
 		resolve(),
 		commonjs(),
 	];
 
 	if (isProduction) {
-		plugins.push(terser());
+		plugins.push(terser({
+			ecma: legacy ? 5 : 8,
+		}));
 	}
 
 	return plugins;
@@ -53,7 +55,7 @@ export default [
 		},
 
 		plugins: [
-			...basePlugins(),
+			...basePlugins(true),
 			babel({
 				envName: 'legacy',
 				exclude: 'node_modules/**',

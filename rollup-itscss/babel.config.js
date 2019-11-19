@@ -6,16 +6,10 @@ module.exports = {
 	env: {
 		modern: {
 			presets: [
-				['@babel/preset-env', {
-					useBuiltIns: 'usage',
-					corejs: 3,
-					exclude: [
-						// Edge does not pass the Promise test and thus includes
-						// this polyfill: https://github.com/zloirock/core-js/issues/579#issuecomment-504325213
-						// Therefor we have to exclude it.
-						'es.promise',
-					],
-				}],
+				['@babel/preset-modules'],
+			],
+			plugins: [
+				'@babel/plugin-syntax-dynamic-import',
 			],
 		},
 
