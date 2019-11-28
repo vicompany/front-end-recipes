@@ -13,7 +13,7 @@ const buildTarget = {
 const INPUT_DIR = 'src/scripts';
 const OUTPUT_DIR = 'dist/js';
 
-function basePlugins(legacy = false) {
+function basePlugins(target = '') {
 	const plugins = [
 		resolve(),
 		commonjs(),
@@ -21,7 +21,7 @@ function basePlugins(legacy = false) {
 
 	if (isProduction) {
 		plugins.push(terser({
-			ecma: legacy ? 5 : 8,
+			ecma: target === buildTarget.LEGACY ? 5 : 8,
 		}));
 	}
 
@@ -63,7 +63,7 @@ const noModuleConfig = () => {
 		},
 
 		plugins: [
-			...basePlugins(true),
+			...basePlugins(buildTarget.LEGACY),
 			babel({
 				envName: buildTarget.LEGACY,
 				exclude: 'node_modules/**',
