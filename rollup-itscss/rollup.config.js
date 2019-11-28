@@ -13,6 +13,10 @@ const buildTarget = {
 const INPUT_DIR = 'src/scripts';
 const OUTPUT_DIR = 'dist/js';
 
+function setBrowserslistEnv(env = '') {
+	process.env.BROWSERSLIST_ENV = env;
+}
+
 function basePlugins(target = '') {
 	const plugins = [
 		resolve(),
@@ -50,7 +54,7 @@ const moduleConfig = () => ({
 });
 
 const noModuleConfig = () => {
-	process.env.BROWSERSLIST_ENV = buildTarget.LEGACY;
+	setBrowserslistEnv(buildTarget.LEGACY);
 
 	return {
 		input: `${INPUT_DIR}/main-nomodule.mjs`,
