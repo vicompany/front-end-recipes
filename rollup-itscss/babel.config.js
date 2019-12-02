@@ -1,7 +1,3 @@
-const LEGACY_BROWSERS = [
-	'ie 11',
-];
-
 module.exports = {
 	env: {
 		modern: {
@@ -23,12 +19,10 @@ module.exports = {
 						'@babel/plugin-transform-async-to-generator',
 						'@babel/plugin-transform-regenerator',
 					],
-					targets: {
-						browsers: LEGACY_BROWSERS,
-					},
 				}],
 			],
 			plugins: [
+				// But convert async functions to promises.
 				'babel-plugin-transform-async-to-promises',
 			],
 		},

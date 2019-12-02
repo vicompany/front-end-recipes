@@ -5,10 +5,19 @@ import { terser } from 'rollup-plugin-terser';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+const buildTarget = {
+	MODERN: 'modern',
+	LEGACY: 'legacy',
+};
+
 const INPUT_DIR = 'src/scripts';
 const OUTPUT_DIR = 'dist/js';
 
-function basePlugins(legacy = false) {
+function setBrowserslistEnv(env = '') {
+	process.env.BROWSERSLIST_ENV = env;
+}
+
+function basePlugins(target = '') {
 	const plugins = [
 		resolve(),
 		commonjs(),
@@ -16,35 +25,38 @@ function basePlugins(legacy = false) {
 
 	if (isProduction) {
 		plugins.push(terser({
-			ecma: legacy ? 5 : 8,
+			ecma: target === buildTarget.LEGACY ? 5 : 8,
 		}));
 	}
 
 	return plugins;
 }
 
-export default [
-	{
-		input: `${INPUT_DIR}/main-module.mjs`,
+const moduleConfig = () => ({
+	input: `${INPUT_DIR}/main-module.mjs`,
 
-		output: {
-			dir: OUTPUT_DIR,
-			format: 'esm',
-			entryFileNames: '[name].mjs',
-			chunkFileNames: '[name]-[hash].mjs',
-			dynamicImportFunction: '__import__',
-			sourcemap: true,
-		},
-
-		plugins: [
-			...basePlugins(),
-			babel({
-				envName: 'modern',
-				exclude: 'node_modules/**',
-			}),
-		],
+	output: {
+		dir: OUTPUT_DIR,
+		format: 'esm',
+		entryFileNames: '[name].mjs',
+		chunkFileNames: '[name]-[hash].mjs',
+		dynamicImportFunction: '__import__',
+		sourcemap: true,
 	},
-	{
+
+	plugins: [
+		...basePlugins(),
+		babel({
+			envName: buildTarget.MODERN,
+			exclude: 'node_modules/**',
+		}),
+	],
+});
+
+const noModuleConfig = () => {
+	setBrowserslistEnv(buildTarget.LEGACY);
+
+	return {
 		input: `${INPUT_DIR}/main-nomodule.mjs`,
 
 		output: {
@@ -55,13 +67,18 @@ export default [
 		},
 
 		plugins: [
-			...basePlugins(true),
+			...basePlugins(buildTarget.LEGACY),
 			babel({
-				envName: 'legacy',
+				envName: buildTarget.LEGACY,
 				exclude: 'node_modules/**',
 			}),
 		],
 
 		inlineDynamicImports: true,
-	},
+	};
+};
+
+export default [
+	moduleConfig(),
+	noModuleConfig(),
 ];
