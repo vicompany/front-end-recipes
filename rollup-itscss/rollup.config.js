@@ -3,7 +3,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 
-const LEGACY_ENV = 'legacy';
+const LEGACY_BUILD = 'legacy';
 const INPUT_DIR = 'src/scripts';
 const OUTPUT_DIR = 'dist/js';
 
@@ -13,7 +13,7 @@ function setBrowserslistEnv(env = '') {
 	process.env.BROWSERSLIST_ENV = env;
 }
 
-function basePlugins(env = '') {
+function basePlugins(build = '') {
 	const plugins = [
 		resolve(),
 		commonjs(),
@@ -21,7 +21,7 @@ function basePlugins(env = '') {
 
 	if (isProduction) {
 		plugins.push(terser({
-			ecma: env === LEGACY_ENV ? 5 : 8,
+			ecma: build === LEGACY_BUILD ? 5 : 8,
 		}));
 	}
 
@@ -49,7 +49,7 @@ const moduleConfig = () => ({
 });
 
 const noModuleConfig = () => {
-	setBrowserslistEnv(LEGACY_ENV);
+	setBrowserslistEnv(LEGACY_BUILD);
 
 	return {
 		input: `${INPUT_DIR}/main-nomodule.mjs`,
@@ -62,9 +62,9 @@ const noModuleConfig = () => {
 		},
 
 		plugins: [
-			...basePlugins(LEGACY_ENV),
+			...basePlugins(LEGACY_BUILD),
 			babel({
-				envName: LEGACY_ENV,
+				envName: LEGACY_BUILD,
 				exclude: 'node_modules/**',
 			}),
 		],
