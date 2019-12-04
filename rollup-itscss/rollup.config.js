@@ -3,21 +3,17 @@ import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 
-const isProduction = process.env.NODE_ENV === 'production';
-
-const buildTarget = {
-	MODERN: 'modern',
-	LEGACY: 'legacy',
-};
-
+const LEGACY_ENV = 'legacy';
 const INPUT_DIR = 'src/scripts';
 const OUTPUT_DIR = 'dist/js';
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 function setBrowserslistEnv(env = '') {
 	process.env.BROWSERSLIST_ENV = env;
 }
 
-function basePlugins(target = '') {
+function basePlugins(env = '') {
 	const plugins = [
 		resolve(),
 		commonjs(),
@@ -25,7 +21,7 @@ function basePlugins(target = '') {
 
 	if (isProduction) {
 		plugins.push(terser({
-			ecma: target === buildTarget.LEGACY ? 5 : 8,
+			ecma: env === LEGACY_ENV ? 5 : 8,
 		}));
 	}
 
@@ -47,14 +43,13 @@ const moduleConfig = () => ({
 	plugins: [
 		...basePlugins(),
 		babel({
-			envName: buildTarget.MODERN,
 			exclude: 'node_modules/**',
 		}),
 	],
 });
 
 const noModuleConfig = () => {
-	setBrowserslistEnv(buildTarget.LEGACY);
+	setBrowserslistEnv(LEGACY_ENV);
 
 	return {
 		input: `${INPUT_DIR}/main-nomodule.mjs`,
@@ -67,9 +62,9 @@ const noModuleConfig = () => {
 		},
 
 		plugins: [
-			...basePlugins(buildTarget.LEGACY),
+			...basePlugins(LEGACY_ENV),
 			babel({
-				envName: buildTarget.LEGACY,
+				envName: LEGACY_ENV,
 				exclude: 'node_modules/**',
 			}),
 		],

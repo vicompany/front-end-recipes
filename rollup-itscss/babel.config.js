@@ -1,14 +1,12 @@
 module.exports = {
-	env: {
-		modern: {
-			presets: [
-				['@babel/preset-modules'],
-			],
-			plugins: [
-				'@babel/plugin-syntax-dynamic-import',
-			],
-		},
+	presets: [
+		['@babel/preset-modules'],
+	],
+	plugins: [
+		'@babel/plugin-syntax-dynamic-import',
+	],
 
+	env: {
 		legacy: {
 			presets: [
 				['@babel/preset-env', {
