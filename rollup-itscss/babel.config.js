@@ -2,9 +2,6 @@ module.exports = {
 	presets: [
 		['@babel/preset-modules'],
 	],
-	plugins: [
-		'@babel/plugin-syntax-dynamic-import',
-	],
 
 	env: {
 		legacy: {
