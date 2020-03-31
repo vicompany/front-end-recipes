@@ -9,10 +9,6 @@ const OUTPUT_DIR = 'dist/js';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-function setBrowserslistEnv(env = '') {
-	process.env.BROWSERSLIST_ENV = env;
-}
-
 function basePlugins(build = '') {
 	const plugins = [
 		resolve(),
@@ -28,7 +24,7 @@ function basePlugins(build = '') {
 	return plugins;
 }
 
-const moduleConfig = () => ({
+const moduleConfig = {
 	input: `${INPUT_DIR}/main-module.mjs`,
 
 	output: {
@@ -46,34 +42,30 @@ const moduleConfig = () => ({
 			exclude: 'node_modules/**',
 		}),
 	],
-});
+};
 
-const noModuleConfig = () => {
-	setBrowserslistEnv(LEGACY_BUILD);
+const noModuleConfig = {
+	input: `${INPUT_DIR}/main-nomodule.mjs`,
 
-	return {
-		input: `${INPUT_DIR}/main-nomodule.mjs`,
+	output: {
+		dir: OUTPUT_DIR,
+		format: 'iife',
+		entryFileNames: '[name].js',
+		sourcemap: true,
+	},
 
-		output: {
-			dir: OUTPUT_DIR,
-			format: 'iife',
-			entryFileNames: '[name].js',
-			sourcemap: true,
-		},
+	plugins: [
+		...basePlugins(LEGACY_BUILD),
+		babel({
+			envName: LEGACY_BUILD,
+			exclude: 'node_modules/**',
+		}),
+	],
 
-		plugins: [
-			...basePlugins(LEGACY_BUILD),
-			babel({
-				envName: LEGACY_BUILD,
-				exclude: 'node_modules/**',
-			}),
-		],
-
-		inlineDynamicImports: true,
-	};
+	inlineDynamicImports: true,
 };
 
 export default [
-	moduleConfig(),
-	noModuleConfig(),
+	moduleConfig,
+	noModuleConfig,
 ];
